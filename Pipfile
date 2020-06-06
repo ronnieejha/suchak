@@ -11,6 +11,7 @@ django = "==3.0.7"
 pytz = "==2020.1"
 sqlparse = "==0.3.1"
 eventregistry = "*"
+gunicorn = "*"
 
 [requires]
 python_version = "3.7"
