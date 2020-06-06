@@ -135,10 +135,4 @@ dmypy.json
 .idea/misc.xml
 .idea/modules.xml
 .idea/suchak.iml
-Pipfile
-Pipfile.lock
-manage.py
-news/
-requirements.txt
-suchak/
-templates/
+.idea/
