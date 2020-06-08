@@ -13,7 +13,6 @@ sqlparse = "==0.3.1"
 eventregistry = "*"
 gunicorn = "*"
 djangorestframework = "*"
-logging = "*"
 
 [requires]
 python_version = "3.7"
