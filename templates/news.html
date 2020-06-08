@@ -13,7 +13,8 @@
                             </button>
                         </h5>
                     </div>
-                    <div id="{{ content.key }}" class="collapse" aria-labelledby="head{{ content.key }}" data-parent="#accordion">
+                    <div id="{{ content.key }}" class="collapse" aria-labelledby="head{{ content.key }}"
+                         data-parent="#accordion">
                         <div class="card-body">
                             <p>{{ content.body }}</p>
                             <a class="btn btn-primary" href="{{ content.url }}">Visit Story</a>
@@ -23,7 +24,7 @@
             {% endfor %}
         </div>
     {% else %}
-        <h1>not got data</h1>
+        <h5 align="center">Please try any other location. Try Delhi...</h5>
     {% endif %}
 
 

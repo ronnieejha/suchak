@@ -19,13 +19,15 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'ot@_4$e=-dor&8x#^#%q9jm=yb37_#7u009_i!p0-lfi#=eo2^'
+SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['suchak.herokuapp.com', '*']
 
+ALLOWED_HOSTS = ['suchak.herokuapp.com',]
+
+EVENT_REGISTRY_KEY = os.environ['EVENT_REGISTRY_KEY']
 # Application definition
 
 INSTALLED_APPS = [
@@ -55,7 +57,7 @@ ROOT_URLCONF = 'suchak.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')]
+        'DIRS': [os.path.join(BASE_DIR,'..', 'templates')]
         ,
         'APP_DIRS': True,
         'OPTIONS': {

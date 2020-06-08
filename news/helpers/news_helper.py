@@ -1,19 +1,26 @@
-from eventregistry import *
+import random
+import string
 from datetime import datetime
-import random, string
+
+from eventregistry import *
+
+from news.configs.news_apis import EventRegistryKey
+
 
 def _parse_datetime(timestamp):
-    return datetime.strptime(timestamp,"%Y-%m-%dT%H:%M:%SZ")
+    return datetime.strptime(timestamp, "%Y-%m-%dT%H:%M:%SZ")
+
 
 def _generate_key():
     return ''.join(random.choices(string.ascii_letters + string.digits, k=16))
 
+
 class EventRegistryApi:
     def __init__(self):
         # Intitializing eventregistry api
-        self.er = EventRegistry(apiKey='7fb9174e-f694-432c-a7ad-aa931be69178')
+        self.er = EventRegistry(apiKey=EventRegistryKey)
 
-    def get_news_by_location(self,location_name):
+    def get_news_by_location(self, location_name):
         """
 
         :param location_name: Name of the location
@@ -25,19 +32,19 @@ class EventRegistryApi:
         'body': #body of article
         }
         """
-        q= QueryArticlesIter(locationUri=self.er.getLocationUri(locationLabel=location_name))
+        q = QueryArticlesIter(locationUri=self.er.getLocationUri(locationLabel=location_name))
         news = list()
-        for art in q.execQuery(self.er, sortBy = "date",sortByAsc = True,maxItems=20):
+        for art in q.execQuery(self.er, sortBy="date", sortByAsc=True, maxItems=20):
             news.append({
                 'key': _generate_key(),
-                'lang': art.get('lang',None),
-                'publishDate': _parse_datetime(art.get('dateTimePub','dateTime')),
-                'url': art.get('url',None),
-                'title': art.get('title',None),
-                'body':art.get('body',None)
+                'lang': art.get('lang', None),
+                'publishDate': _parse_datetime(art.get('dateTimePub', 'dateTime')),
+                'url': art.get('url', None),
+                'title': art.get('title', None),
+                'body': art.get('body', None)
             }
             )
         return news
 
-    def get_new_by_location(self,location_cordinates):
+    def get_new_by_cordinates(self, location_cordinates):
         pass
