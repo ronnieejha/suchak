@@ -1,14 +1,12 @@
 import random
 import string
 from datetime import datetime
-
+import logging
 from eventregistry import *
 
 from news.configs.news_apis import EventRegistryKey
 
 
-def _parse_datetime(timestamp):
-    return datetime.strptime(timestamp, "%Y-%m-%dT%H:%M:%SZ")
 
 
 def _generate_key():
@@ -18,7 +16,10 @@ def _generate_key():
 class EventRegistryApi:
     def __init__(self):
         # Intitializing eventregistry api
-        self.er = EventRegistry(apiKey=EventRegistryKey)
+        try:
+            self.er = EventRegistry(apiKey=EventRegistryKey)
+        except:
+            logging.warning('Failed to create EventRegistry Object')
 
     def get_news_by_location(self, location_name):
         """
@@ -38,7 +39,7 @@ class EventRegistryApi:
             news.append({
                 'key': _generate_key(),
                 'lang': art.get('lang', None),
-                'publishDate': _parse_datetime(art.get('dateTimePub', 'dateTime')),
+                'publishDate': art.get('dateTimePub', 'dateTime'),
                 'url': art.get('url', None),
                 'title': art.get('title', None),
                 'body': art.get('body', None)
