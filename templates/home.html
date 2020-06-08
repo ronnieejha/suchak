@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>{% block title %}Swiflearn Login{% endblock %}</title>
+</head>
+<body>
+  <header>
+      <form action = "{% url 'locationNews'%}">
+    <label for="locatioName">Enter Location: </label>
+    <input id="locatioName" type="text" name="locationName">
+    <input type="submit" value="Search">
+
+</form>
+  </header>
+  <hr>
+  <main>
+    {% block content %}
+    {% endblock %}
+  </main>
+  <hr>
+  <footer>
+    <h5>Powered by EventRegistry</h5>
+  </footer>
+</body>
+</html>

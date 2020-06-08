@@ -1,0 +1,18 @@
+
+{% extends 'home.html' %}
+
+{% block content %}
+    <table>
+{% if news_data %}
+    {% for content in news_data %}
+    <tr>
+    <td> {{ content.title}} </td>
+    </tr>
+{% endfor %}
+    </table>
+{% else %}
+<h1>not got data</h1>
+{% endif %}
+
+
+{% endblock content %}

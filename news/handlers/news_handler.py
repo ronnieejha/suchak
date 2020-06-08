@@ -1,6 +1,6 @@
-from news.helpers.location_news_helper import EventRegistryAPI
+from news.helpers.news_helper import EventRegistryApi
 
-SOURCES = [EventRegistryAPI]
+SOURCES = [EventRegistryApi]
 
 def collect_news_from_source(locationname):
     news = list()
@@ -10,7 +10,6 @@ def collect_news_from_source(locationname):
         except:
             continue
             #log the error
-
     if news:
         return news
     else:

@@ -17,3 +17,10 @@ def get_news_for_location(request):
     else:
         return Response(data={'data':[],'success':False,'message':'Uable to get news for this location'},status=status.HTTP_204_NO_CONTENT)
 
+
+
+
+def render_news(request):
+    location = request.GET.get('locationName')
+    news = collect_news_from_source(location)
+    return render(request,'news.html',{'news_data':news})

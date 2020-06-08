@@ -6,7 +6,7 @@ def _parse_datetime(timestamp):
     return datetime.strptime(timestamp,"%Y-%m-%dT%H:%M:%SZ")
 
 
-class EventRegistryAPI:
+class EventRegistryApi:
     def __init__(self):
         # Intitializing eventregistry api
         self.er = EventRegistry(apiKey='7fb9174e-f694-432c-a7ad-aa931be69178')
