@@ -1,10 +1,12 @@
 from eventregistry import *
 from datetime import datetime
-
+import random, string
 
 def _parse_datetime(timestamp):
     return datetime.strptime(timestamp,"%Y-%m-%dT%H:%M:%SZ")
 
+def _generate_key():
+    return ''.join(random.choices(string.ascii_letters + string.digits, k=16))
 
 class EventRegistryApi:
     def __init__(self):
@@ -25,8 +27,9 @@ class EventRegistryApi:
         """
         q= QueryArticlesIter(locationUri=self.er.getLocationUri(locationLabel=location_name))
         news = list()
-        for art in q.execQuery(self.er, sortBy = "date",sortByAsc = True,maxItems=10):
+        for art in q.execQuery(self.er, sortBy = "date",sortByAsc = True,maxItems=20):
             news.append({
+                'key': _generate_key(),
                 'lang': art.get('lang',None),
                 'publishDate': _parse_datetime(art.get('dateTimePub','dateTime')),
                 'url': art.get('url',None),

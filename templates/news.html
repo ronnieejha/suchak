@@ -1,18 +1,30 @@
-
 {% extends 'home.html' %}
 
 {% block content %}
-    <table>
-{% if news_data %}
-    {% for content in news_data %}
-    <tr>
-    <td> {{ content.title}} </td>
-    </tr>
-{% endfor %}
-    </table>
-{% else %}
-<h1>not got data</h1>
-{% endif %}
+    {% if news_data %}
+        <div id="accordion">
+            {% for content in news_data %}
+                <div class="card">
+                    <div class="card-header" id="head{{ content.key }}">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#{{ content.key }}"
+                                    aria-expanded="false" aria-controls="{{ content.key }}">
+                                {{ content.title }}
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="{{ content.key }}" class="collapse" aria-labelledby="head{{ content.key }}" data-parent="#accordion">
+                        <div class="card-body">
+                            <p>{{ content.body }}</p>
+                            <a class="btn btn-primary" href="{{ content.url }}">Visit Story</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <h1>not got data</h1>
+    {% endif %}
 
 
 {% endblock content %}

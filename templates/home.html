@@ -1,26 +1,68 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <title>{% block title %}Swiflearn Login{% endblock %}</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <meta charset="utf-8">
+    <title>{% block title %}Location News{% endblock %}</title>
 </head>
+<style>
+    .heading {
+        width: fit-content;
+        align-content: center;
+        color: darkslategray;
+        padding-left: 50px;
+    }
+    .body{
+        align-content: center;
+        align-items: center;
+        align-self: center;
+    }
+    .inputBar{
+        width: fit-content;
+        align-self: center;
+        alignment: center;
+    }
+</style>
 <body>
-  <header>
-      <form action = "{% url 'locationNews'%}">
-    <label for="locatioName">Enter Location: </label>
-    <input id="locatioName" type="text" name="locationName">
-    <input type="submit" value="Search">
+<div style=" margin:0 auto;">
+<header>
+<div style="margin:0 auto;">
+    {% block heading  %}
+        <h3 align="center">Location News</h3>
+    {% endblock %}
 
-</form>
-  </header>
-  <hr>
-  <main>
+</div>
+</header>
+<div style=" width:800px; margin:0 auto;">
+    <form action="{% url 'locationNews' %}">
+        <div class="input-group mb-3">
+        <input id="locatioName" name="locationName" type="text" class="form-control" placeholder="Enter Location to Search for News" aria-label="Recipient's username" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+        <input type="submit" value="Search" class="btn btn-outline-secondary">
+                </div>
+        </div>
+    </form>
+</div>
+<hr>
+<main>
     {% block content %}
     {% endblock %}
-  </main>
-  <hr>
-  <footer>
+</main>
+<hr>
+<footer>
     <h5>Powered by EventRegistry</h5>
-  </footer>
+</footer>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</div>
 </body>
 </html>
