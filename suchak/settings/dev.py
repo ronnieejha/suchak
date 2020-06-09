@@ -28,7 +28,7 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 # Application definition
-EVENT_REGISTRY_KEY = os.environ['EVENT_REGISTRY_KEY']
+EVENT_REGISTRY_KEY = os.environ.get('EVENT_REGISTRY_KEY',None)
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
