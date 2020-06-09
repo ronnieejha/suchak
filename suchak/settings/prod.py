@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-
+from urllib.parse import urlparse
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -75,13 +75,18 @@ WSGI_APPLICATION = 'suchak.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-
+psql = urlparse(os.environ['DATABASE_URL'])
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+  'default': {
+    'ENGINE': 'django.db.backends.postgresql',
+    'NAME': psql.path[1:],
+    'HOST': psql.hostname,
+    'PORT': 5432,
+    'USER': psql.username,
+    'PASSWORD': psql.password,
+  }
 }
+psql=None
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
